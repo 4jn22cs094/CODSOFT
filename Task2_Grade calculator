@@ -1,0 +1,138 @@
+package Java;
+import java.util.*;
+
+public class Student {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("=======================================");
+        System.out.println("   🏫 WELCOME TO SMART REPORT SYSTEM 🏫");
+        System.out.println("=======================================");
+
+        // Store student data
+        Map<String, Double> studentPercentages = new HashMap<>();
+        Map<String, String> overallGrades = new HashMap<>();
+
+        boolean addMoreStudents = true;
+
+        // Fixed subjects
+        String[] subjectNames = {"Math", "Science", "English", "History", "Computer"};
+
+        while (addMoreStudents) {
+            System.out.print("\nEnter Student Name: ");
+            String studentName = scanner.nextLine(); // allow full names with spaces
+
+            System.out.print("Enter Roll Number: ");
+            String rollNumber = scanner.nextLine();
+
+            int totalMarks = 0;
+            StringBuilder subjectDetails = new StringBuilder();
+
+            subjectDetails.append("\n----------------------------------\n");
+            subjectDetails.append("📚 Subject-wise Performance\n");
+            subjectDetails.append("----------------------------------\n");
+            subjectDetails.append(String.format("%-15s %-10s %-10s\n", "Subject", "Marks", "Grade"));
+            subjectDetails.append("----------------------------------\n");
+
+            // Enter marks for each fixed subject
+            for (String subject : subjectNames) {
+                int marks;
+                while (true) {
+                    System.out.print("Enter marks for " + subject + " (0–100): ");
+                    marks = scanner.nextInt();
+                    scanner.nextLine(); // consume newline
+                    if (marks >= 0 && marks <= 100) break;
+                    System.out.println("⚠️ Invalid input! Please enter between 0 and 100.");
+                }
+                totalMarks += marks;
+
+                String subjectGrade = calculateGrade(marks);
+                subjectDetails.append(String.format("%-15s %-10d %-10s\n", subject, marks, subjectGrade));
+            }
+
+            double percentage = (double) totalMarks / subjectNames.length;
+            String overallGrade = calculateGrade(percentage);
+            String feedback = generateFeedback(overallGrade, percentage);
+
+            // Save data
+            studentPercentages.put(studentName, percentage);
+            overallGrades.put(studentName, overallGrade);
+
+            // Print Formal Report Card
+            System.out.println("\n=======================================");
+            System.out.println("              📑 REPORT CARD");
+            System.out.println("=======================================");
+            System.out.println("🏫 Institution : ABC Senior Secondary School");
+            System.out.println("👤 Student Name: " + studentName);
+            System.out.println("🆔 Roll Number : " + rollNumber);
+            System.out.println(subjectDetails);
+            System.out.println("----------------------------------");
+            System.out.println("📊 Total Marks       : " + totalMarks + "/" + (subjectNames.length * 100));
+            System.out.printf("📊 Average Percentage: %.2f%%\n", percentage);
+            System.out.println("📊 Overall Grade     : " + overallGrade);
+            System.out.println("💡 Feedback          : " + feedback);
+            System.out.println("=======================================\n");
+
+            System.out.print("Do you want to add another student? (yes/no): ");
+            String choice = scanner.next();
+            scanner.nextLine(); // consume newline
+            addMoreStudents = !choice.equalsIgnoreCase("no");
+        }
+
+        // Show Scoreboard
+        showScoreboard(studentPercentages);
+
+        scanner.close();
+    }
+
+    // Calculate Grade
+    private static String calculateGrade(double marks) {
+        if (marks >= 90) return "A+";
+        else if (marks >= 80) return "A";
+        else if (marks >= 70) return "B";
+        else if (marks >= 60) return "C";
+        else if (marks >= 50) return "D";
+        else return "F";
+    }
+
+    // Generate Feedback
+    private static String generateFeedback(String grade, double percentage) {
+        switch (grade) {
+            case "A+": return "🌟 Outstanding performance! Keep it up.";
+            case "A": return "✨ Excellent! You're doing great.";
+            case "B": return (percentage >= 78) ? "🔥 Almost an A! Keep pushing!" : "👍 Good work, but there’s room for improvement.";
+            case "C": return (percentage >= 68) ? "📈 Close to B! Work a little harder." : "🙂 Fair performance. Try to push harder.";
+            case "D": return "⚠️ Needs improvement. Focus more.";
+            default: return "❌ Poor performance. Don’t give up, keep practicing!";
+        }
+    }
+
+    // Show Class Scoreboard
+    private static void showScoreboard(Map<String, Double> studentPercentages) {
+        System.out.println("\n=======================================");
+        System.out.println("           🏆 CLASS SCOREBOARD 🏆");
+        System.out.println("=======================================");
+
+        List<Map.Entry<String, Double>> sortedList = new ArrayList<>(studentPercentages.entrySet());
+        sortedList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
+
+        int rank = 1;
+        for (Map.Entry<String, Double> entry : sortedList) {
+            String rankStr = getRankString(rank);
+            System.out.printf("%s %s : %.2f%%\n", rankStr, entry.getKey(), entry.getValue());
+            rank++;
+        }
+        System.out.println("=======================================");
+    }
+
+    // Rank Helper
+    private static String getRankString(int rank) {
+        switch (rank) {
+            case 1: return "🥇 1st Place -";
+            case 2: return "🥈 2nd Place -";
+            case 3: return "🥉 3rd Place -";
+            default: return rank + "th Place -";
+        }
+    }
+}
