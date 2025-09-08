@@ -48,20 +48,15 @@ A console-based simulation of an ATM machine.
 
 Features:
 
-User login with encrypted PIN (SHA-256).
-
-PIN input masked with *.
-
+User login with pin (SHA-256).
 Options: Check Balance, Deposit, Withdraw, Transfer Money.
 
 Validation (sufficient balance, valid amounts).
 
 Multi-user system with account registration.
 
-Accounts saved to file (accounts.txt) for persistence.
-
 📂 Code: Task3_ATM Interface
-🎥 Demo Video: [LinkedIn Post Link]
+🎥 Demo Video: https://www.linkedin.com/posts/namratha-m-patel-695780380_java-programming-internship-activity-7370864891240394752-lFyG?utm_source=share&utm_medium=member_android&rcm=ACoAAF4WH9EBLugxxH0WucLka0nyscipubzSMuM
 
 ⚙️ Technologies Used
 
