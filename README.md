@@ -21,7 +21,7 @@ Multiple rounds & multiple players supported.
 Live scoreboard with rankings.
 
 📂 Code: Task1_Number game.java
-🎥 Demo Video: [LinkedIn Post Link]
+🎥 Demo Video:https://www.linkedin.com/posts/namratha-m-patel-695780380_java-coding-programming-activity-7370857877583863808-Pfj1?utm_source=share&utm_medium=member_android&rcm=ACoAAF4WH9EBLugxxH0WucLka0nyscipubzSMuM
 
 📚 Task 2: Student Grade Calculator
 
