@@ -40,7 +40,7 @@ Feedback messages based on performance.
 Class scoreboard with ranks (🥇🥈🥉).
 
 📂 Code: Task2_Grade calculator
-🎥 Demo Video: [LinkedIn Post Link]
+🎥 Demo Video: https://www.linkedin.com/posts/namratha-m-patel-695780380_java-programming-internship-activity-7370860708919672832-fn6G?utm_source=share&utm_medium=member_android&rcm=ACoAAF4WH9EBLugxxH0WucLka0nyscipubzSMuM
 
 🏦 Task 3: ATM Interface
 
